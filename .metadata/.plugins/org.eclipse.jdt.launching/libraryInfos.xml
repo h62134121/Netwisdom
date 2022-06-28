@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<libraryInfos>
+<libraryInfo home="D:\入职课程\eclipse" version="1.8.0_40">
+<bootpath>
+<entry path="D:\入职课程\eclipse\jre\lib\resources.jar"/>
+<entry path="D:\入职课程\eclipse\jre\lib\rt.jar"/>
+<entry path="D:\入职课程\eclipse\jre\lib\sunrsasign.jar"/>
+<entry path="D:\入职课程\eclipse\jre\lib\jsse.jar"/>
+<entry path="D:\入职课程\eclipse\jre\lib\jce.jar"/>
+<entry path="D:\入职课程\eclipse\jre\lib\charsets.jar"/>
+<entry path="D:\入职课程\eclipse\jre\lib\jfr.jar"/>
+<entry path="D:\入职课程\eclipse\jre\classes"/>
+</bootpath>
+<extensionDirs>
+<entry path="D:\入职课程\eclipse\jre\lib\ext"/>
+<entry path="C:\WINDOWS\Sun\Java\lib\ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="D:\入职课程\eclipse\jre\lib\endorsed"/>
+</endorsedDirs>
+</libraryInfo>
+<libraryInfo home="D:\YGCbook实战\jdk_tomcat\jdk1.7.0_80" version="1.7.0_80">
+<bootpath>
+<entry path="D:\YGCbook实战\jdk_tomcat\jdk1.7.0_80\jre\lib\resources.jar"/>
+<entry path="D:\YGCbook实战\jdk_tomcat\jdk1.7.0_80\jre\lib\rt.jar"/>
+<entry path="D:\YGCbook实战\jdk_tomcat\jdk1.7.0_80\jre\lib\sunrsasign.jar"/>
+<entry path="D:\YGCbook实战\jdk_tomcat\jdk1.7.0_80\jre\lib\jsse.jar"/>
+<entry path="D:\YGCbook实战\jdk_tomcat\jdk1.7.0_80\jre\lib\jce.jar"/>
+<entry path="D:\YGCbook实战\jdk_tomcat\jdk1.7.0_80\jre\lib\charsets.jar"/>
+<entry path="D:\YGCbook实战\jdk_tomcat\jdk1.7.0_80\jre\lib\jfr.jar"/>
+<entry path="D:\YGCbook实战\jdk_tomcat\jdk1.7.0_80\jre\classes"/>
+</bootpath>
+<extensionDirs>
+<entry path="D:\YGCbook实战\jdk_tomcat\jdk1.7.0_80\jre\lib\ext"/>
+<entry path="C:\WINDOWS\Sun\Java\lib\ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="D:\YGCbook实战\jdk_tomcat\jdk1.7.0_80\jre\lib\endorsed"/>
+</endorsedDirs>
+</libraryInfo>
+</libraryInfos>
