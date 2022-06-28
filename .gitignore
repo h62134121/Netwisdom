@@ -4,6 +4,11 @@
 # Log file
 *.log
 
+
+*.metdata
+RemoteSystemsTempFiles
+Servers
+
 # BlueJ files
 *.ctxt
 
