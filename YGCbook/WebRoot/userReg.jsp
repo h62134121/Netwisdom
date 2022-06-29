@@ -20,7 +20,7 @@
 			<option value="0">软件工程</option>
 			<option value="1" >英语</option>
 			<option value="2">数学</option>
-		</select><br>
+		    </select><br>
 		简介:<br><textarea id="intro" name="intro">abcd</textarea><br>
 		
 		<input type="submit" value="注册用户">

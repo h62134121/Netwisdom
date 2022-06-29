@@ -1,20 +1,14 @@
 package cn.jp.netwisdom.entity;
-
-import java.util.Date;
-
-
+ 
 public class Userinfo {
+	//创建与数据库对应的属性
 	private String username;
 	private String password;
 	private String sex;
 	private String major;
 	private String intro;
 	
-	
-	
-
-	
-
+	//设置get set 方法
 	public String getUsername() {
 		return username;
 	}
@@ -46,59 +40,22 @@ public class Userinfo {
 		this.intro = intro;
 	}
 	
-	
-	
-	
-	
+	//调用构造函数
+	public Userinfo(String username, String password, String sex, String major, String intro) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.sex = sex;
+		this.major = major;
+		this.intro = intro;
+	}
+	//添加无参构造函数
 	public Userinfo() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
-	public Userinfo(String bookName, int booktypeId, String pbName,
-			String author, String context, String smallImg, String bigImg,
-			float price, Date pbdate, int bookStates, float ygcprice) {
-		super();
-		this.bookName = bookName;
-		this.booktypeId = booktypeId;
-		this.pbName = pbName;
-		this.author = author;
-		this.context = context;
-		this.smallImg = smallImg;
-		this.bigImg = bigImg;
-		this.price = price;
-		this.pbdate = pbdate;
-		this.bookStates = bookStates;
-		this.ygcprice = ygcprice;
-	}
-	public Userinfo(String bookName, int booktypeId, String pbName,
-			String author, String context, String smallImg, String bigImg,
-			float price, Date pbdate, float ygcprice) {
-		super();
-		this.bookName = bookName;
-		this.booktypeId = booktypeId;
-		this.pbName = pbName;
-		this.author = author;
-		this.context = context;
-		this.smallImg = smallImg;
-		this.bigImg = bigImg;
-		this.price = price;
-		this.pbdate = pbdate;
-		this.ygcprice = ygcprice;
-	}
-	public Userinfo(int bookId, String bookName, int booktypeId, String pbName,
-			String author, String context, String smallImg, String bigImg,
-			float price, Date pbdate, int bookStates, float ygcprice) {
-		super();
-		this.bookId = bookId;
-		this.bookName = bookName;
-		this.booktypeId = booktypeId;
-		this.pbName = pbName;
-		this.author = author;
-		this.context = context;
-		this.smallImg = smallImg;
-		this.bigImg = bigImg;
-		this.price = price;
-		this.pbdate = pbdate;
-		this.bookStates = bookStates;
-		this.ygcprice = ygcprice;
-	}
+	
+	
+	
+
 }

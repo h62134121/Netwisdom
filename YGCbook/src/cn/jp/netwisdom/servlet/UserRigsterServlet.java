@@ -1,40 +1,59 @@
 package cn.jp.netwisdom.servlet;
 
+
+
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cn.jp.netwisdom.entity.Userinfo;
 import cn.key.dao.SysAdminDAO;
 import cn.key.entity.SysAdmin;
-
+import cn.key.netwisdom.dao.UserinfoDAO;
 public class UserRigsterServlet extends HttpServlet {
- 
+	//创建servlet层 继承父类HttpSerclet
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		//姓名
+		//获取注册姓名信息
 		String username = request.getParameter("username"); 
-		//密码
+		//获取注册密码信息
  		String password = request.getParameter("password");
-		//性别
+		//获取注册性别信息
 		String sex = request.getParameter("sex");
-		//专业
+		//获取注册专业信息
 		String major = request.getParameter("major");
-		//爱好
-		String hobby = request.getParameter("hobby");
-		//简介 
+		//获取注册简介信息 
 		String intro = request.getParameter("intro"); 
 		
 		
-		BookInfoDao dao = new BookInfoDao(); 
-		dao.save(book);
-
-		SysAdmin admin = new SysAdmin();
+//		获取注册爱好信息 TODO
+		String hobby = request.getParameter("hobby");
 		
-		admin = dao.findById(id);
-		request.setAttribute("admin", admin);
+		  
+		UserinfoDAO dao = new UserinfoDAO();
+		//用户信息表更新
+//       boolean  result = dao.save(new Userinfo(username,password,sex,major,intro));
+       
+       
+       if(dao.save(new Userinfo(username,password,sex,major,intro))){
+    	   System.out.println("用户信息表登录成功");
+       }else{
+    	   System.out.println("用户信息表登录失败");
+       }
+      
+		
+		
+		//用户爱好表更新 TODO
+
+ 
+//		SysAdmin admin = new SysAdmin();
+		
+
+//		request.setAttribute("admin", admin);
 		request.getRequestDispatcher("/background/sysAdmin/upSysAdminStates.jsp").forward(request, response);
 	}
 
