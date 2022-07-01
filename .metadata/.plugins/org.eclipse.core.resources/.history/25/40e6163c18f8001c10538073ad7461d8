@@ -1,0 +1,105 @@
+package cn.jp.netwisdom.servlet;
+
+
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+
+import cn.jp.netwisdom.entity.Hobbyinfo;
+import cn.jp.netwisdom.entity.Userinfo;
+import cn.key.dao.SysAdminDAO;
+import cn.key.entity.SysAdmin;
+import cn.key.netwisdom.dao.HobbyDAO;
+import cn.key.netwisdom.dao.UserinfoDAO;
+public class UserRigsterServlet extends HttpServlet {
+	//创建servlet层 继承父类HttpSerclet
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		//获取注册姓名信息
+		String username = request.getParameter("username"); 
+		//获取注册密码信息
+ 		String password = request.getParameter("password");
+		//获取注册性别信息
+		String sex = request.getParameter("sex");
+		//获取注册专业信息
+		String major = request.getParameter("major");
+		//获取注册简介信息 
+		String intro = request.getParameter("intro"); 
+        //获取注册爱好信息 TODO
+        // String hobby = request.getParameter("hobby");
+       
+       
+		username = "xxd";
+		String[] hobbyArry = {"0","1","2"};	
+		
+		Hobbyinfo hobby1 = new Hobbyinfo();
+		hobby1.setUsername(username);
+		hobby1.setHobby(hobbyArry[0]);
+		
+		Hobbyinfo hobby2 = new Hobbyinfo();
+		hobby2.setUsername(username);
+		hobby2.setHobby(hobbyArry[1]);
+		
+		Hobbyinfo hobby3 = new Hobbyinfo();
+		hobby3.setUsername(username);
+		hobby3.setHobby(hobbyArry[2]);
+		
+		List hobbyList _= new ArrayList();
+		hobbyList.add(hobby1);
+		hobbyList.add(hobby2);
+		hobbyList.add(hobby3);
+		
+		
+	    HobbyDAO dao = new HobbyDAO();
+	    dao.save(list);
+		
+		
+		
+		
+		
+		Userinfo userinfo = new Userinfo(username,password,sex,major,intro);
+		UserinfoDAO dao = new UserinfoDAO();
+		boolean rs1 = dao.save(userinfo);
+		//用户信息表更新
+//       boolean  result = dao.save(new Userinfo(username,password,sex,major,intro));
+       
+       
+       if(dao.save(new Userinfo(username,password,sex,major,intro))){
+    	   System.out.println("用户信息表登录成功");
+       }else{
+    	   System.out.println("用户信息表登录失败");
+       }
+      
+		
+		//用户爱好表更新 TODO
+
+ 
+//		SysAdmin admin = new SysAdmin();
+		
+       
+       
+       
+   
+       
+       
+//		获取注册爱好信息 TODO
+        String hobby = request.getParameter("hobby");
+
+//		request.setAttribute("admin", admin);
+		request.getRequestDispatcher("/background/sysAdmin/upSysAdminStates.jsp").forward(request, response);
+	}
+
+	public void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		this.doGet(request, response);
+	}
+
+} 

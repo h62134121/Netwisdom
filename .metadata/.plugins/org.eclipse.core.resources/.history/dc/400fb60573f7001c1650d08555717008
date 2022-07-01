@@ -1,0 +1,10 @@
+package cn.jp.netwisdom.entity;
+ 
+public class Hobbyinfo {
+	//创建与数据库对应的属性  用户名
+	private String username;
+	//兴趣爱好
+	private String hobby;
+
+
+}

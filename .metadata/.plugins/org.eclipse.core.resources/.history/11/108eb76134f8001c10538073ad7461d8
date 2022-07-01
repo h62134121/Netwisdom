@@ -1,0 +1,89 @@
+package cn.jp.netwisdom.servlet;
+
+
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+
+
+import cn.jp.netwisdom.entity.Userinfo;
+import cn.key.dao.SysAdminDAO;
+import cn.key.entity.SysAdmin;
+import cn.key.netwisdom.dao.HobbyDAO;
+import cn.key.netwisdom.dao.UserinfoDAO;
+public class UserRigsterServlet extends HttpServlet {
+	//创建servlet层 继承父类HttpSerclet
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		//获取FROM表单里的注册姓名信息
+		String username = request.getParameter("username"); 
+		//获取FROM表单里的信息密码信息
+ 		String password = request.getParameter("password");
+		//获取FROM表单里的性别信息
+		String sex = request.getParameter("sex");
+		//获取FROM表单里的专业信息
+		String major = request.getParameter("major");
+		//获取FROM表单里的简介信息 
+		String intro = request.getParameter("intro");
+
+		
+		//获取前端存到实体里的数据
+		Userinfo userinfo = new Userinfo(username,password,sex,major,intro);
+		//创建一个对象
+		UserinfoDAO dao = new UserinfoDAO();
+		//调用DAO层的save方法 来判断插入是否成功
+		boolean rs1 = dao.save(userinfo);
+       
+	
+	
+        //获取FROM表单里的爱好信息 TODO 0 1 2
+        String[]  hobby = req.getParameter("hobby");
+		
+		
+		
+		
+		
+		
+		
+       
+        
+        
+        
+        
+        
+       if(rs1){
+    	   System.out.println("用户信息表登录成功");
+       }else{
+    	   System.out.println("用户信息表登录失败");
+       }
+      
+		
+		//用户爱好表更新 TODO
+
+ 
+//		SysAdmin admin = new SysAdmin();
+		
+       
+       
+       
+   
+       
+
+//		request.setAttribute("admin", admin);
+		request.getRequestDispatcher("/background/sysAdmin/upSysAdminStates.jsp").forward(request, response);
+	}
+
+	public void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		this.doGet(request, response);
+	}
+
+} 
