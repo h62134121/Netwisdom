@@ -602,17 +602,28 @@
   
   
   
-  
+<!--用servlet语句链接注册信息表前端数据交互-->
  <servlet>
     <servlet-name>UserRigsterServlet</servlet-name>
     <servlet-class>cn.jp.netwisdom.servlet.UserRigsterServlet</servlet-class>
  </servlet>
  
- 
   <servlet-mapping>
     <servlet-name>UserRigsterServlet</servlet-name>
     <url-pattern>/UserRigster</url-pattern>
   </servlet-mapping> 
+  
+  
+  <!--用servlet语句链接搜索查询表前端数据交互-->
+   <servlet>
+     <servlet-name>UserSearchServlet</servlet-name>
+     <servlet-class>cn.jp.netwisdom.servlet.UserSearchServlet</servlet-class>
+   </servlet>
+
+   <servlet-mapping>
+     <servlet-name>UserSearchServlet</servlet-name>
+     <url-pattern>/UserSearch</url-pattern>
+   </servlet-mapping>
   
   
   

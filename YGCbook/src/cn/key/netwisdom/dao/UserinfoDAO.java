@@ -8,18 +8,20 @@ import cn.jp.netwisdom.entity.Userinfo;
 import cn.key.Tools.DataTool;
 import cn.key.dbManager.JdbcTemplate;
 import cn.key.entity.BookInfo;
-import cn.key.mapping.BookInfoMapping;
+import cn.key.entity.BookType;
+import cn.key.mapping.UserinfoMapping;
 //DAO层
 public class UserinfoDAO {
 	private JdbcTemplate template = new JdbcTemplate();
 	
-
+   //将前端数据导入数据库方法
 	public boolean save(Userinfo userinfo) {
 		int row = 0;
 		//创建与数据库对应的数据类型 问好代表还未传入的未知数据
 		String sql = "insert into userinfo(username,password,sex,major,intro)" + 
 		                "values(?,?,?,?,?)";
 		
+
 		//创建一个对象 获取entity里面属性和get方法
 		Object[] values = new Object[]{
 		                userinfo.getUsername(),
@@ -27,7 +29,6 @@ public class UserinfoDAO {
 						userinfo.getSex(),
 						userinfo.getMajor(),
 						userinfo.getIntro()};
-		
 		
 		//最终执行SQl文是通过try/template来执行
 		try {
@@ -44,185 +45,29 @@ public class UserinfoDAO {
 	
 	
 	
-	 
-	public boolean updata(BookInfo book) {
+	//数据库信息抽出 
+	public List<Userinfo> findUserInfo(String username, String sex, String major) {
 		
-		String sql = "update bookInfo " +
-						" set bookName=?,booktypeId=?,pbName=?,author=?,context=?," +
-										"smallImg=?,bigImg=?,price=?,pbdate=?,bookStates=?,ygcprice=?" +
-						" where bookId=?";
-		int row = 0;
-		String dateStr = DataTool.datetoString(book.getPbdate());
-		Object[] values = new Object[]{book.getBookName(), book.getBooktypeId(), book.getPbName(), book.getAuthor(), book.getContext(), 
-				book.getSmallImg(), book.getBigImg(), book.getPrice(), dateStr, book.getBookStates(), book.getYgcprice(), book.getBookId()};
-		try {
-			row = template.updata(sql, values);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+		String sql = "select * from userinfo where ";
+		//当姓名不为空时
+		if(!"".equals(username)){
+			sql = sql + " username = '" + username + "' and"; 
 		}
-		return (row == 1);
-	}
-	public boolean upDelete(int type,int id) {
-		String sql = "update bookInfo" +
-						" set bookStates=" + type +
-						" where bookId=" + id;
-		int row = 0;
-		try {
-			row = template.updata(sql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		return (row == 1);
-	}
-	
-	public int getPageCount(int pageSize, int bookStates) {
-		int pageCount = 0;
-		int rows = 0;
-		String sql = "select count(*) " +
-		" from bookInfo " +
-		" where ";
-		StringBuffer sb = new StringBuffer(sql);
-		switch (bookStates) {
-		case 1:
-		sb.append(" bookStates=1");
-		break;
-		case 2:
-		sb.append(" bookStates=2");
-		break;
-		case 3:
-		sb.append(" bookStates=3");
-		break;
-		case 4:
-		sb.append(" 1=1");
-		break;
-		default:
-		sb.append(" bookStates<>3 ");
-		}
-		try {
-		rows = template.select(sb.toString());
-		pageCount = rows / pageSize;
-		if((rows % pageSize) != 0) {
-			pageCount ++;
-		}
-		} catch (SQLException e) {
-		e.printStackTrace();
-		}
-		return pageCount;
-	}
-	
-	public int getForPageCount(int pageSize, int bookStates, int typeId) {
-		int pageCount = 0;
-		int rows = 0;
-		String sql = "select count(*) " +
-		" from bookInfo " +
-		" where booktypeId=" + typeId + " and ";
-		StringBuffer sb = new StringBuffer(sql);
-		switch (bookStates) {
-		case 1:
-		sb.append(" bookStates=1");
-		break;
-		case 2:
-		sb.append(" bookStates=2");
-		break;
-		case 3:
-		sb.append(" bookStates=3");
-		break;
-		case 4:
-		sb.append(" 1=1");
-		break;
-		default:
-		sb.append(" bookStates<>3 ");
-		}
-		try {
-		rows = template.select(sb.toString());
-		pageCount = rows / pageSize;
-		if((rows % pageSize) != 0) {
-			pageCount ++;
-		}
-		} catch (SQLException e) {
-		e.printStackTrace();
-		}
-		return pageCount;
-	}
-	
-	public List<BookInfo> findByAuthorBookName(String bookName, String author) {
-		String sql = "select bookId,bookName,booktypeId,pbName,author," +
-						"context,smallImg,bigImg,price,pbdate," +
-						"bookStates,ygcprice " +
-						" from bookInfo " +
-						" where bookStates=2 ";
-		StringBuffer sb = new StringBuffer(sql);
-		if(bookName.length() != 0) {
-			sb.append(" and bookName like '%" + bookName + "%'");
-		}
-		if(author.length() != 0) {
-			sb.append(" and author like '%" + author + "%'");
-		}
-		List<BookInfo> list = new Vector<BookInfo>();
-		try {
-			list = template.selete(sb.toString(), new BookInfoMapping());
-		} catch (SQLException e) {
-			e.printStackTrace();
+		//性别
+		sql = sql + " sex = '" + sex + "'";
+		//专业
+		if(!"".equals(major)){
+			sql = sql + " and major = '" + major + "'";
 		}
 		
+		
+		List<Userinfo> list = new Vector<Userinfo>();
+		try { 
+			list = template.selete(sql, new UserinfoMapping());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return list;
-	}
-	
-	public int getPageCountByIndex(String bookName, String author, int pageSize, int bookStates) {
-		int pageCount = 0;
-		int rows = 0;
-		StringBuilder where = new StringBuilder(" where 1=1 and bookStates=" + bookStates);
-		if(bookName.length() != 0) {
-			where.append(" and bookName like '%" + bookName + "%'");
-		}
-		if(author.length() != 0) {
-			where.append(" and author like '%" + author + "%'");
-		}
-		
-		String sql = "select count(*) " +
-					" from bookInfo " + where;
-		try {
-		rows = template.select(sql);
-		pageCount = rows / pageSize;
-		if((rows % pageSize) != 0) {
-			pageCount ++;
-		}
-		} catch (SQLException e) {
-		e.printStackTrace();
-		}
-		return pageCount;
-	}
-	
-	public List<BookInfo> getNowPageByAuthorBookName(String bookName, String author, int nowPage, int pageSize, int bookStates) {
-		StringBuilder where = new StringBuilder(" where bookStates=" + bookStates);
-		if(bookName.length() != 0) {
-			where.append(" and bookName like '%" + bookName + "%'");
-		}
-		if(author.length() != 0) {
-			where.append(" and author like '%" + author + "%'");
-		}
-		String sql = "select top " + pageSize + "bookId,bookName,booktypeId,pbName,author," +
-						"context,smallImg,bigImg,price,pbdate," +
-						"bookStates,ygcprice " +
-						" from bookInfo " + where +
-						"	and " +
-						"	bookId not in" +
-						"		(select top " + (nowPage-1)*pageSize + " bookId from bookInfo  " + where + 
-						"	and 1=1) ";
-		
-		List<BookInfo> list = new Vector<BookInfo>();
-		try {
-			list = template.selete(sql, new BookInfoMapping());
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return list;
-	}
-
+	} 
 }
 

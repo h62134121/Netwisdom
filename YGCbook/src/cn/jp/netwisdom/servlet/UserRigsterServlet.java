@@ -47,7 +47,7 @@ public class UserRigsterServlet extends HttpServlet {
 	
         //获取FROM表单里的爱好信息 TODO 0 1 2
         String[]  hobbyArray = request.getParameterValues("hobby");
-        
+        //将数组用list实装
         List<Hobby> hobbyList = new ArrayList<Hobby>();
         
         //数据转换和插入
@@ -56,11 +56,12 @@ public class UserRigsterServlet extends HttpServlet {
         	hobbyList.add(hobbyOne);
         }
         
-        
+        //创建一个对象
 		HobbyDAO saveDao  = new HobbyDAO();
+		//调用save方法
 		boolean rs2 = saveDao.save(hobbyList);
 		
-		
+		//判断rs1和rs2为真还是假后 分别进行执行分歧语句
 		if(rs1 && rs2){
 			System.out.println("用户注册成功");
 			request.getRequestDispatcher("userSuccess.jsp").forward(request, response);
@@ -70,17 +71,9 @@ public class UserRigsterServlet extends HttpServlet {
 			
 		}
 	}
+	
 		//用户爱好表更新 TODO
-
- 
 //		SysAdmin admin = new SysAdmin();
-		
-       
-       
-       
-   
-       
-
 ////		request.setAttribute("admin", admin);
 //		request.getRequestDispatcher("/background/sysAdmin/upSysAdminStates.jsp").forward(request, response);
 //	}

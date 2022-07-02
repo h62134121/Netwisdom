@@ -6,10 +6,11 @@
 <fullyQualifiedTypeName name="javax.servlet.ServletException"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
 <fullyQualifiedTypeName name="cn.key.netwisdom.dao.UserinfoDAO"/>
-<fullyQualifiedTypeName name="cn.jp.netwisdom.entity.Userinfo"/>
 <fullyQualifiedTypeName name="cn.jp.netwisdom.entity.Hobbyinfo"/>
 <fullyQualifiedTypeName name="cn.key.netwisdom.dao.HobbyDAO"/>
 <fullyQualifiedTypeName name="com.sun.xml.internal.bind.v2.schemagen.xmlschema.List"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="cn.jp.netwisdom.entity.Hobby"/>
+<fullyQualifiedTypeName name="cn.jp.netwisdom.entity.Userinfo"/>
+<fullyQualifiedTypeName name="cn.key.mapping.UserinfoMapping"/>
 </qualifiedTypeNameHistroy>
